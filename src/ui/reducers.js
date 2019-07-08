@@ -8,6 +8,7 @@ import {
   notificationsReducer,
   tagsReducer,
   commentReducer,
+  blockChannelReducer,
 } from 'lbry-redux';
 import {
   userReducer,
@@ -46,6 +47,7 @@ export default history =>
     stats: statsReducer,
     subscriptions: subscriptionsReducer,
     tags: tagsReducer,
+    blockedChannels: blockChannelReducer,
     user: userReducer,
     wallet: walletReducer,
   });
