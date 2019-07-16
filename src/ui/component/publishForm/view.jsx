@@ -164,25 +164,24 @@ function PublishForm(props: Props) {
         <PublishName disabled={formDisabled} />
         <PublishPrice disabled={formDisabled} />
         <PublishAdditionalOptions disabled={formDisabled} />
-
-        <section className="card card--section">
-          {!formDisabled && !formValid && <PublishFormErrors />}
-
-          <div className="card__actions">
-            <Button
-              button="primary"
-              onClick={publish}
-              label={submitLabel}
-              disabled={formDisabled || !formValid || uploadThumbnailStatus === THUMBNAIL_STATUSES.IN_PROGRESS}
-            />
-            <Button button="link" onClick={clearPublish} label={__('Cancel')} />
-          </div>
-          <p className="help">
-            {__('By continuing, you accept the')}{' '}
-            <Button button="link" href="https://www.lbry.com/termsofservice" label={__('LBRY Terms of Service')} />.
-          </p>
-        </section>
       </div>
+      <section className="card card--section">
+        {!formDisabled && !formValid && <PublishFormErrors />}
+
+        <div className="card__actions">
+          <Button
+            button="primary"
+            onClick={publish}
+            label={submitLabel}
+            disabled={formDisabled || !formValid || uploadThumbnailStatus === THUMBNAIL_STATUSES.IN_PROGRESS}
+          />
+          <Button button="link" onClick={clearPublish} label={__('Reset')} />
+        </div>
+        <p className="help">
+          {__('By continuing, you accept the')}{' '}
+          <Button button="link" href="https://www.lbry.com/termsofservice" label={__('LBRY Terms of Service')} />.
+        </p>
+      </section>
     </Fragment>
   );
 }

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { selectBalance } from 'lbry-redux';
 import { selectIsStillEditing, makeSelectPublishFormValue } from 'redux/selectors/publish';
-import { doUpdatePublishForm } from 'redux/actions/publish';
+import { doUpdatePublishForm, doClearPublish } from 'redux/actions/publish';
 import PublishPage from './view';
 
 const select = state => ({
@@ -13,6 +13,7 @@ const select = state => ({
 
 const perform = dispatch => ({
   updatePublishForm: value => dispatch(doUpdatePublishForm(value)),
+  clearPublish: () => dispatch(doClearPublish()),
 });
 
 export default connect(
