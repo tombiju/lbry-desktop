@@ -39,7 +39,7 @@ function PublishFile(props: Props) {
         {isStillEditing && (
           <p className="card__subtitle">
             {__('You are currently editing a claim. ')}
-            <Button button="link" onClick={clearPublish} label={__('Clear')} />
+            <Button button="link" onClick={clearPublish} label={__('Go to Publish')} />
           </p>
         )}
       </header>

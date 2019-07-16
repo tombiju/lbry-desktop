@@ -543,5 +543,8 @@
   "Upgrade is ready": "Upgrade is ready",
   "Abandon the claim for this URI": "Abandon the claim for this URI",
   "You are currently editing a claim. ": "You are currently editing a claim. ",
-  "Reset": "Reset"
+  "Reset": "Reset",
+  "Reset Publish": "Reset Publish",
+  "Reset to Publish": "Reset to Publish",
+  "Go to Publish": "Go to Publish"
 }
