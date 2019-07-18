@@ -37,7 +37,7 @@ export function CommentCreate(props: Props) {
   }
 
   return (
-    <section>
+    <div className={IS_WEB && 'card--disabled'}>
       {commentAck !== true && (
         <div className="card__content markdown-preview">
           <p>{__('A few things to know before participating in the comment alpha:')}</p>
@@ -90,6 +90,6 @@ export function CommentCreate(props: Props) {
           </div>
         </Form>
       )}
-    </section>
+    </div>
   );
 }
