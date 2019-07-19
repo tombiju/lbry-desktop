@@ -121,8 +121,6 @@ function PublishForm(props: Props) {
 
   return (
     <Fragment>
-      <UnsupportedOnWeb />
-
       <div className={classnames({ 'card--disabled': formDisabled })}>
         <PublishFile />
         <PublishText disabled={formDisabled} />

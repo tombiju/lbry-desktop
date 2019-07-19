@@ -30,10 +30,8 @@ function App(props: Props) {
     ReactModal.setAppElement(appRef.current);
     fetchRewardedContent();
 
-    // @if TARGET='app'
     fetchRewards();
     fetchTransactions();
-    // @endif
   }, [fetchRewards, fetchRewardedContent, fetchTransactions]);
 
   useEffect(() => {

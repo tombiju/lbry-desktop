@@ -313,16 +313,17 @@ export function doDaemonReady() {
     dispatch(doAuthenticate(appVersion));
     dispatch({ type: ACTIONS.DAEMON_READY });
 
-    // @if TARGET='app'
+
     dispatch(doFetchDaemonSettings());
     dispatch(doBalanceSubscribe());
     dispatch(doFetchFileInfosAndPublishedClaims());
+    // @if TARGET='app'
     if (!selectIsUpgradeSkipped(state)) {
       dispatch(doCheckUpgradeAvailable());
     }
     dispatch(doCheckUpgradeSubscribe());
-    dispatch(doCheckSubscriptionsInit());
     // @endif
+    dispatch(doCheckSubscriptionsInit());
   };
 }
 

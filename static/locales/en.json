@@ -587,5 +587,10 @@
   "Unlock": "Unlock",
   "Exit": "Exit",
   "Your wallet has been encrypted with a local password. Please enter your wallet password to proceed.": "Your wallet has been encrypted with a local password. Please enter your wallet password to proceed.",
-  "Wallet Password": "Wallet Password"
+  "Wallet Password": "Wallet Password",
+  "Upgrade Downloaded": "Upgrade Downloaded",
+  "Use Now": "Use Now",
+  "Upgrade on Close": "Upgrade on Close",
+  "A new version of LBRY is ready for you.": "A new version of LBRY is ready for you.",
+  "File Size": "File Size"
 }
