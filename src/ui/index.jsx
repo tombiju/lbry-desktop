@@ -98,6 +98,7 @@ Lbryio.setOverride(
   () =>
     new Promise(resolve => {
       if (authToken) {
+        Lbry.setApiHeader('X-Lbry-Auth-Token', authToken);
         resolve(authToken);
       } else {
         // @if TARGET='app'
@@ -110,6 +111,10 @@ Lbryio.setOverride(
         // @endif
         // @if TARGET='web'
         const { auth_token: authToken } = cookie.parse(document.cookie);
+
+        if (authToken) {
+          Lbry.setApiHeader('X-Lbry-Auth-Token', authToken);
+        }
         resolve(authToken);
         // @endif
       }
