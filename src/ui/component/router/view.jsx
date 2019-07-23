@@ -20,6 +20,7 @@ import WalletPage from 'page/wallet';
 import NavigationHistory from 'page/navigationHistory';
 import TagsPage from 'page/tags';
 import FollowingPage from 'page/following';
+import MyChannelsPage from 'page/myChannels';
 
 const Scroll = withRouter(function ScrollWrapper(props) {
   const { pathname } = props.location;
@@ -57,6 +58,8 @@ export default function AppRouter() {
         <Route path={`/$/${PAGES.TAGS}`} exact component={TagsPage} />
         <Route path={`/$/${PAGES.FOLLOWING}`} exact component={FollowingPage} />
         <Route path={`/$/${PAGES.WALLET}`} exact component={WalletPage} />
+        <Route path={`/$/${PAGES.MY_CHANNELS}`} exact component={MyChannelsPage} />
+
         {/* Below need to go at the end to make sure we don't match any of our pages first */}
         <Route path="/:claimName" exact component={ShowPage} />
         <Route path="/:claimName/:contentName" exact component={ShowPage} />

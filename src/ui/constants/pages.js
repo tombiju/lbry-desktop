@@ -19,4 +19,5 @@ export const FOLLOWING = 'following';
 export const SEARCH = 'search';
 export const TRANSACTIONS = 'transactions';
 export const TAGS = 'tags';
+export const MY_CHANNELS = 'mychannels';
 export const WALLET = 'wallet';

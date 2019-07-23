@@ -128,7 +128,7 @@ function ClaimPreview(props: Props) {
           </div>
           {type !== 'small' && (
             <div>
-              {isChannel && <SubscribeButton uri={uri.startsWith('lbry://') ? uri : `lbry://${uri}`} />}
+              {isChannel && !claimIsMine && <SubscribeButton uri={uri.startsWith('lbry://') ? uri : `lbry://${uri}`} />}
               {!isChannel && <FileProperties uri={uri} />}
             </div>
           )}
@@ -138,7 +138,9 @@ function ClaimPreview(props: Props) {
           <div className="media__subtitle">
             <UriIndicator uri={uri} link />
             {pending && <div>Pending...</div>}
-            <div>{isChannel ? `${claimsInChannel} ${__('publishes')}` : <DateTime timeAgo uri={uri} />}</div>
+            <div>
+              {isChannel && claimsInChannel ? `${claimsInChannel} ${__('publishes')}` : <DateTime timeAgo uri={uri} />}
+            </div>
           </div>
 
           <ClaimTags uri={uri} type={type} />
