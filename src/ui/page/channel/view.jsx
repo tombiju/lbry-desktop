@@ -93,7 +93,7 @@ function ChannelPage(props: Props) {
             <div className="card__actions">
               <ShareButton uri={uri} />
               <SubscribeButton uri={permanentUrl} />
-              <BlockButton uri={uri} />
+              <BlockButton uri={permanentUrl} />
             </div>
           </TabList>
 
