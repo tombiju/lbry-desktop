@@ -75,6 +75,7 @@ const appFilter = createFilter('app', ['hasClickedComment', 'searchOptionsExpand
 const walletFilter = createFilter('wallet', ['receiveAddress']);
 const searchFilter = createFilter('search', ['options']);
 const tagsFilter = createFilter('tags', ['followedTags']);
+const blockedFilter = createFilter('blockedChannels', ['blockedChannels']);
 const whiteListedReducers = [
   // @if TARGET='app'
   'publish',
@@ -86,6 +87,7 @@ const whiteListedReducers = [
   'app',
   'search',
   'tags',
+  'blockedChannels',
 ];
 
 const persistOptions = {
@@ -97,6 +99,7 @@ const persistOptions = {
     walletFilter,
     contentFilter,
     fileInfoFilter,
+    blockedFilter,
     // @endif
     appFilter,
     searchFilter,
@@ -109,7 +112,9 @@ const persistOptions = {
 
 window.cacheStore = persistStore(store, persistOptions, err => {
   if (err) {
+    /* eslint-disable */
     console.error('Unable to load saved settings');
+    /* eslint-enable */
   }
 });
 
