@@ -46,6 +46,7 @@ type Props = {
   walletEncrypted: boolean,
   osNotificationsEnabled: boolean,
   supportOption: boolean,
+  userBlockedChannelsCount?: number,
 };
 
 type State = {
@@ -153,6 +154,7 @@ class SettingsPage extends React.PureComponent<Props, State> {
       setDaemonSetting,
       setClientSetting,
       supportOption,
+      userBlockedChannelsCount,
     } = this.props;
 
     const noDaemonSettings = !daemonSettings || Object.keys(daemonSettings).length === 0;
@@ -290,10 +292,11 @@ class SettingsPage extends React.PureComponent<Props, State> {
             <section className="card card--section">
               <header className="card__header">
                 <h2 className="card__title">{__('Blocked Channels')}</h2>
-
                 <p className="card__subtitle card__help ">
-                  {__('You have')} {'7'}{' '}
-                  <Button button="link" label={__('blocked channels')} navigate={`/$/${PAGES.BLOCKED}`} />.
+                  {__('You have')} {userBlockedChannelsCount}{' '}
+                  <Button button="link" label={__('blocked')} navigate={`/$/${PAGES.BLOCKED}`} />{' '}
+                  {userBlockedChannelsCount === 1 && __('channel')}
+                  {userBlockedChannelsCount !== 1 && __('channels')}.
                 </p>
               </header>
             </section>
