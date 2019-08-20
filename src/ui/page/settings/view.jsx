@@ -7,7 +7,6 @@ import { FormField, FormFieldPrice, Form } from 'component/common/form';
 import Button from 'component/button';
 import Page from 'component/page';
 import FileSelector from 'component/common/file-selector';
-import UnsupportedOnWeb from 'component/common/unsupported-on-web';
 
 type Price = {
   currency: string,
@@ -208,13 +207,116 @@ class SettingsPage extends React.PureComponent<Props, State> {
     const startHours = ['18', '19', '20', '21'];
     const endHours = ['5', '6', '7', '8'];
 
+    const contentSettings = (
+      <section className="card card--section">
+        <h2 className="card__title">{__('Content Settings')}</h2>
+        <FormField
+          type="checkbox"
+          name="floating_player"
+          onChange={() => {
+            setClientSetting(SETTINGS.FLOATING_PLAYER, !floatingPlayer);
+            clearPlayingUri();
+          }}
+          checked={floatingPlayer}
+          label={__('Floating video player')}
+          helper={__('Keep content playing in the corner when navigating to a different page.')}
+        />
+
+        <FormField
+          type="checkbox"
+          name="autoplay"
+          onChange={() => setClientSetting(SETTINGS.AUTOPLAY, !autoplay)}
+          checked={autoplay}
+          label={__('Autoplay media files')}
+          helper={__(
+            'Autoplay video and audio files when navigating to a file, as well as the next related item when a file finishes playing.'
+          )}
+        />
+
+        <FormField
+          type="checkbox"
+          name="show_nsfw"
+          onChange={() => setClientSetting(SETTINGS.SHOW_NSFW, !showNsfw)}
+          checked={showNsfw}
+          label={__('Show mature content')}
+          helper={__(
+            'Mature content may include nudity, intense sexuality, profanity, or other adult content. By displaying mature content, you are affirming you are of legal age to view mature content in your country or jurisdiction.  '
+          )}
+        />
+      </section>
+    );
+
+    const appearanceSettings = (
+      <section className="card card--section">
+        <h2 className="card__title">{__('Appearance')}</h2>
+
+        <Form>
+          <fieldset-section>
+            <FormField
+              name="theme_select"
+              type="select"
+              label={__('Theme')}
+              onChange={this.onThemeChange}
+              value={currentTheme}
+              disabled={automaticDarkModeEnabled}
+            >
+              {themes.map(theme => (
+                <option key={theme} value={theme}>
+                  {theme}
+                </option>
+              ))}
+            </FormField>
+          </fieldset-section>
+          <fieldset-section>
+            <FormField
+              type="checkbox"
+              name="automatic_dark_mode"
+              onChange={() => this.onAutomaticDarkModeChange(!automaticDarkModeEnabled)}
+              checked={automaticDarkModeEnabled}
+              label={__('Automatic dark mode')}
+            />
+            {automaticDarkModeEnabled && (
+              <fieldset-group className="fieldset-group--smushed">
+                <FormField
+                  type="select"
+                  name="automatic_dark_mode_range"
+                  onChange={value => this.onChangeTime(value, { fromTo: 'from', time: 'hour' })}
+                  value={darkModeTimes.from.hour}
+                  label={__('From')}
+                >
+                  {startHours.map(time => (
+                    <option key={time} value={time}>
+                      {this.to12Hour(time)}
+                    </option>
+                  ))}
+                </FormField>
+                <FormField
+                  type="select"
+                  name="automatic_dark_mode_range"
+                  label={__('To')}
+                  onChange={value => this.onChangeTime(value, { fromTo: 'to', time: 'hour' })}
+                  value={darkModeTimes.to.hour}
+                >
+                  {endHours.map(time => (
+                    <option key={time} value={time}>
+                      {this.to12Hour(time)}
+                    </option>
+                  ))}
+                </FormField>
+              </fieldset-group>
+            )}
+          </fieldset-section>
+        </Form>
+      </section>
+    );
+
     return (
       <Page>
-        {IS_WEB && <UnsupportedOnWeb />}
         {noDaemonSettings ? (
-          <section className="card card--section">
-            <div className="card__title">{__('Failed to load settings.')}</div>
-          </section>
+          <React.Fragment>
+            {contentSettings}
+            {appearanceSettings}
+          </React.Fragment>
         ) : (
           <div className={classnames({ 'card--disabled': IS_WEB })}>
             <section className="card card--section">
@@ -343,42 +445,7 @@ class SettingsPage extends React.PureComponent<Props, State> {
               </Form>
             </section>
 
-            <section className="card card--section">
-              <h2 className="card__title">{__('Content Settings')}</h2>
-              <FormField
-                type="checkbox"
-                name="floating_player"
-                onChange={() => {
-                  setClientSetting(SETTINGS.FLOATING_PLAYER, !floatingPlayer);
-                  clearPlayingUri();
-                }}
-                checked={floatingPlayer}
-                label={__('Floating video player')}
-                helper={__('Keep content playing in the corner when navigating to a different page.')}
-              />
-
-              <FormField
-                type="checkbox"
-                name="autoplay"
-                onChange={() => setClientSetting(SETTINGS.AUTOPLAY, !autoplay)}
-                checked={autoplay}
-                label={__('Autoplay media files')}
-                helper={__(
-                  'Autoplay video and audio files when navigating to a file, as well as the next related item when a file finishes playing.'
-                )}
-              />
-
-              <FormField
-                type="checkbox"
-                name="show_nsfw"
-                onChange={() => setClientSetting(SETTINGS.SHOW_NSFW, !showNsfw)}
-                checked={showNsfw}
-                label={__('Show mature content')}
-                helper={__(
-                  'Mature content may include nudity, intense sexuality, profanity, or other adult content. By displaying mature content, you are affirming you are of legal age to view mature content in your country or jurisdiction.  '
-                )}
-              />
-            </section>
+            {contentSettings}
 
             <section className="card card--section">
               <h2 className="card__title">{__('Blocked Channels')}</h2>
@@ -424,67 +491,7 @@ class SettingsPage extends React.PureComponent<Props, State> {
               </Form>
             </section>
 
-            <section className="card card--section">
-              <h2 className="card__title">{__('Appearance')}</h2>
-
-              <Form>
-                <fieldset-section>
-                  <FormField
-                    name="theme_select"
-                    type="select"
-                    label={__('Theme')}
-                    onChange={this.onThemeChange}
-                    value={currentTheme}
-                    disabled={automaticDarkModeEnabled}
-                  >
-                    {themes.map(theme => (
-                      <option key={theme} value={theme}>
-                        {theme}
-                      </option>
-                    ))}
-                  </FormField>
-                </fieldset-section>
-                <fieldset-section>
-                  <FormField
-                    type="checkbox"
-                    name="automatic_dark_mode"
-                    onChange={() => this.onAutomaticDarkModeChange(!automaticDarkModeEnabled)}
-                    checked={automaticDarkModeEnabled}
-                    label={__('Automatic dark mode')}
-                  />
-                  {automaticDarkModeEnabled && (
-                    <fieldset-group class="fieldset-group--smushed">
-                      <FormField
-                        type="select"
-                        name="automatic_dark_mode_range"
-                        onChange={value => this.onChangeTime(value, { fromTo: 'from', time: 'hour' })}
-                        value={darkModeTimes.from.hour}
-                        label={__('From')}
-                      >
-                        {startHours.map(time => (
-                          <option key={time} value={time}>
-                            {this.to12Hour(time)}
-                          </option>
-                        ))}
-                      </FormField>
-                      <FormField
-                        type="select"
-                        name="automatic_dark_mode_range"
-                        label={__('To')}
-                        onChange={value => this.onChangeTime(value, { fromTo: 'to', time: 'hour' })}
-                        value={darkModeTimes.to.hour}
-                      >
-                        {endHours.map(time => (
-                          <option key={time} value={time}>
-                            {this.to12Hour(time)}
-                          </option>
-                        ))}
-                      </FormField>
-                    </fieldset-group>
-                  )}
-                </fieldset-section>
-              </Form>
-            </section>
+            {appearanceSettings}
 
             <section className="card card--section">
               <h2 className="card__title">{__('Wallet Security')}</h2>
