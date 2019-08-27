@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as settings from 'constants/settings';
-import { doClearCache, doNotifyEncryptWallet, doNotifyDecryptWallet } from 'redux/actions/app';
+import { doClearCache, doNotifyEncryptWallet, doNotifyDecryptWallet, doNotifyForgetPassword } from 'redux/actions/app';
 import {
   doSetDaemonSetting,
   doSetClientSetting,
@@ -48,6 +48,7 @@ const perform = dispatch => ({
   encryptWallet: () => dispatch(doNotifyEncryptWallet()),
   decryptWallet: () => dispatch(doNotifyDecryptWallet()),
   updateWalletStatus: () => dispatch(doWalletStatus()),
+  confirmForgetPassword: modalProps => dispatch(doNotifyForgetPassword(modalProps)),
   clearPlayingUri: () => dispatch(doSetPlayingUri(null)),
   setDarkTime: (time, options) => dispatch(doSetDarkTime(time, options)),
 });

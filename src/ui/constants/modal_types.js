@@ -28,3 +28,4 @@ export const CONFIRM_THUMBNAIL_UPLOAD = 'confirm_thumbnail_upload';
 export const WALLET_ENCRYPT = 'wallet_encrypt';
 export const WALLET_DECRYPT = 'wallet_decrypt';
 export const WALLET_UNLOCK = 'wallet_unlock';
+export const WALLET_PASSWORD_UNSAVE = 'wallet_password_unsave';
