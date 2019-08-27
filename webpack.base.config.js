@@ -93,7 +93,7 @@ let baseConfig = {
           loader: 'raw-loader',
         },
       },
-      { test: /\.node$/, loader: 'node-loader' },
+      // { test: /\.node$/, loader: 'node-loader' },
     ],
   },
   // Allows imports for all directories inside '/ui'
@@ -132,5 +132,28 @@ let baseConfig = {
     }),
   ],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  // Apply prod overrides
+  baseConfig = merge(baseConfig, {
+    externals: {
+      keytar: 'require("keytar")',
+      electron: 'require("electron")',
+      express: 'require("express")',
+      'electron-updater': 'require("electron-updater")',
+    },
+  });
+} else {
+  // const nodeExternals = require('webpack-node-externals');
+  // Apply dev overrides
+  baseConfig = merge(baseConfig, {
+    externals: {
+      keytar: 'require("keytar")',
+      electron: 'require("electron")',
+      express: 'require("express")',
+      'electron-updater': 'require("electron-updater")',
+    },
+  });
+}
 
 module.exports = baseConfig;
