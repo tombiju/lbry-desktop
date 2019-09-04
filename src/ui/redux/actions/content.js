@@ -23,7 +23,7 @@ import {
   selectDownloadingByOutpoint,
   makeSelectClaimForUri,
 } from 'lbry-redux';
-import { makeSelectCostInfoForUri } from 'lbryinc';
+import { makeSelectCostInfoForUri, rewards, doClaimRewardType } from 'lbryinc';
 import { makeSelectClientSetting, selectosNotificationsEnabled, selectDaemonSettings } from 'redux/selectors/settings';
 import { formatLbryUriForWeb } from 'util/uri';
 
@@ -179,6 +179,7 @@ export function doPurchaseUriWrapper(uri: string, cost: number, saveFile: boolea
   return (dispatch: Dispatch, getState: () => any) => {
     function onSuccess(fileInfo) {
       dispatch(doUpdateLoadStatus(uri, fileInfo.outpoint));
+      dispatch(doClaimRewardType(rewards.TYPE_DAILY_VIEW, { failSilently: true }));
     }
 
     // Only pass the sucess callback if we are saving the file, otherwise we don't show the download percentage
