@@ -2,11 +2,19 @@ import * as ACTIONS from 'constants/action_types';
 // @if TARGET='app'
 import { shell } from 'electron';
 // @endif
-import { Lbry, batchActions, doAbandonClaim, selectMyClaimsOutpoints, makeSelectFileInfoForUri } from 'lbry-redux';
+import {
+  Lbry,
+  batchActions,
+  doAbandonClaim,
+  selectMyClaimsOutpoints,
+  makeSelectFileInfoForUri,
+  doSetPlayingUri,
+  selectPlayingUri,
+} from 'lbry-redux';
 import { doHideModal } from 'redux/actions/app';
 import { goBack } from 'connected-react-router';
-import { doSetPlayingUri } from 'redux/actions/content';
-import { selectPlayingUri } from 'redux/selectors/content';
+// import { doSetPlayingUri } from 'redux/actions/content';
+// import {  } from 'redux/selectors/content';
 
 export function doOpenFileInFolder(path) {
   return () => {

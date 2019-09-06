@@ -8,14 +8,14 @@ import {
   doChangeLanguage,
   doSetDarkTime,
 } from 'redux/actions/settings';
-import { doSetPlayingUri } from 'redux/actions/content';
+// import { doSetPlayingUri } from 'redux/actions/content';
 import {
   makeSelectClientSetting,
   selectDaemonSettings,
   selectLanguages,
   selectosNotificationsEnabled,
 } from 'redux/selectors/settings';
-import { doWalletStatus, selectWalletIsEncrypted, selectBlockedChannelsCount } from 'lbry-redux';
+import { doWalletStatus, selectWalletIsEncrypted, selectBlockedChannelsCount, doSetPlayingUri } from 'lbry-redux';
 import SettingsPage from './view';
 
 const select = state => ({

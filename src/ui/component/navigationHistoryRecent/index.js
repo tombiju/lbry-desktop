@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { selectRecentHistory } from 'redux/selectors/content';
+import { selectRecentHistory } from 'lbry-redux';
 import RecentUserHistory from './view';
 
 const select = (state, props) => ({

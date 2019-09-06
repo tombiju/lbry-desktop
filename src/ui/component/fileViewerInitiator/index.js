@@ -1,16 +1,19 @@
 import * as SETTINGS from 'constants/settings';
 import { connect } from 'react-redux';
-import { doPlayUri, doSetPlayingUri } from 'redux/actions/content';
+import { doPlayUri } from 'redux/actions/content';
 import {
   makeSelectFileInfoForUri,
   makeSelectThumbnailForUri,
   makeSelectStreamingUrlForUri,
   makeSelectMediaTypeForUri,
   makeSelectUriIsStreamable,
+  doSetPlayingUri,
+  makeSelectIsPlaying,
+  selectPlayingUri,
 } from 'lbry-redux';
 import { makeSelectCostInfoForUri } from 'lbryinc';
 import { makeSelectClientSetting } from 'redux/selectors/settings';
-import { makeSelectIsPlaying, makeSelectShouldObscurePreview, selectPlayingUri } from 'redux/selectors/content';
+import { makeSelectShouldObscurePreview } from 'redux/selectors/content';
 import FileViewer from './view';
 
 const select = (state, props) => ({

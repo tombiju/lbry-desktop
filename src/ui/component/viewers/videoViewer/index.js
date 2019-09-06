@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { makeSelectFileInfoForUri } from 'lbry-redux';
+import { makeSelectFileInfoForUri, savePosition, doSetPlayingUri, makeSelectContentPositionForUri } from 'lbry-redux';
 import { doChangeVolume, doChangeMute } from 'redux/actions/app';
 import { selectVolume, selectMute } from 'redux/selectors/app';
-import { savePosition, doSetPlayingUri } from 'redux/actions/content';
-import { makeSelectContentPositionForUri } from 'redux/selectors/content';
+// import { savePosition, doSetPlayingUri } from 'redux/actions/content';
+// import { makeSelectContentPositionForUri } from 'redux/selectors/content';
 import VideoViewer from './view';
 
 const select = (state, props) => ({

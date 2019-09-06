@@ -1,5 +1,5 @@
 // @flow
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import analytics from 'analytics';
 import { Lbry, buildURI, parseURI } from 'lbry-redux';
 import Router from 'component/router/index';
@@ -41,7 +41,14 @@ function App(props: Props) {
   const previousHasVerifiedEmail = usePrevious(hasVerifiedEmail);
   const previousRewardApproved = usePrevious(isRewardApproved);
   const { pathname, hash } = props.location;
+  const [ready, setReady] = useState(false);
 
+  console.log(pathname, hash);
+  useEffect(() => {
+    setTimeout(() => {
+      setReady(true);
+    }, 5000);
+  }, []);
   let uri;
   try {
     const newpath = buildURI(parseURI(pathname.slice(1).replace(/:/g, '#')));
@@ -102,7 +109,7 @@ function App(props: Props) {
       </div>
 
       <ModalRouter />
-      <FileViewer pageUri={uri} />
+      {ready && <FileViewer pageUri={uri | 'lbry://one'} />}
 
       {isEnhancedLayout && <Yrbl className="yrbl--enhanced" />}
     </div>

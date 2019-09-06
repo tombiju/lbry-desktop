@@ -7,11 +7,14 @@ import {
   makeSelectMediaTypeForUri,
   makeSelectUriIsStreamable,
   makeSelectTitleForUri,
+  makeSelectIsPlaying,
+  selectPlayingUri,
+  doSetPlayingUri,
 } from 'lbry-redux';
 import { doClaimEligiblePurchaseRewards } from 'lbryinc';
-import { makeSelectIsPlaying, makeSelectShouldObscurePreview, selectPlayingUri } from 'redux/selectors/content';
+import { makeSelectShouldObscurePreview } from 'redux/selectors/content';
 import { makeSelectClientSetting } from 'redux/selectors/settings';
-import { doSetPlayingUri } from 'redux/actions/content';
+// import { doSetPlayingUri } from 'redux/actions/content';
 import { withRouter } from 'react-router';
 import { doAnalyticsView } from 'redux/actions/app';
 import FileViewer from './view';

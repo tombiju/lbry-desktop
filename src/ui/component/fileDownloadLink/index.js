@@ -4,9 +4,10 @@ import {
   makeSelectDownloadingForUri,
   makeSelectLoadingForUri,
   makeSelectClaimIsMine,
+  doSetPlayingUri,
 } from 'lbry-redux';
 import { doOpenModal } from 'redux/actions/app';
-import { doSetPlayingUri, doPlayUri } from 'redux/actions/content';
+import { doPlayUri } from 'redux/actions/content';
 import FileDownloadLink from './view';
 
 const select = (state, props) => ({

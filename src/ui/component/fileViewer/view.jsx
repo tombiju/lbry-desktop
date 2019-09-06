@@ -46,6 +46,8 @@ export default function FileViewer(props: Props) {
     triggerAnalyticsView,
     claimRewards,
   } = props;
+  console.log(props);
+
   const [playTime, setPlayTime] = useState();
   const [fileViewerRect, setFileViewerRect] = usePersistedState('inline-file-viewer:rect');
   const [position, setPosition] = usePersistedState('floating-file-viewer:position', {
@@ -85,7 +87,6 @@ export default function FileViewer(props: Props) {
       const element = document.querySelector(`.${FILE_WRAPPER_CLASS}`);
       if (!element) {
         console.error("Can't find file viewer wrapper to attach to the inline viewer to");
-        return;
       }
 
       const rect = element.getBoundingClientRect();

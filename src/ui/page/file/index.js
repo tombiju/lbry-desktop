@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import * as settings from 'constants/settings';
-import { selectRewardContentClaimIds } from 'redux/selectors/content';
+// import { selectRewardContentClaimIds } from 'lbryinc';
 import { doRemoveUnreadSubscription } from 'redux/actions/subscriptions';
 import { doSetClientSetting } from 'redux/actions/settings';
-import { doSetContentHistoryItem } from 'redux/actions/content';
+// import { doSetContentHistoryItem } from 'redux/actions/content';
 import {
   doFetchFileInfo,
   makeSelectClaimIsMine,
@@ -17,8 +17,15 @@ import {
   makeSelectThumbnailForUri,
   makeSelectClaimIsNsfw,
   doPrepareEdit,
+  doSetContentHistoryItem,
 } from 'lbry-redux';
-import { doFetchViewCount, makeSelectViewCountForUri, makeSelectCostInfoForUri, doFetchCostInfoForUri } from 'lbryinc';
+import {
+  doFetchViewCount,
+  makeSelectViewCountForUri,
+  makeSelectCostInfoForUri,
+  doFetchCostInfoForUri,
+  selectRewardContentClaimIds,
+} from 'lbryinc';
 import { selectShowMatureContent, makeSelectClientSetting } from 'redux/selectors/settings';
 import { makeSelectIsSubscribed } from 'redux/selectors/subscriptions';
 import { doOpenModal } from 'redux/actions/app';

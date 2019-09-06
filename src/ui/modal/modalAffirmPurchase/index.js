@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { doSetPlayingUri, doPlayUri } from 'redux/actions/content';
+import { doPlayUri } from 'redux/actions/content';
 import { doHideModal } from 'redux/actions/app';
-import { makeSelectMetadataForUri } from 'lbry-redux';
+import { makeSelectMetadataForUri, doSetPlayingUri } from 'lbry-redux';
 import ModalAffirmPurchase from './view';
 
 const select = (state, props) => ({

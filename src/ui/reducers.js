@@ -11,6 +11,7 @@ import {
   blockedReducer,
   publishReducer,
   fileReducer,
+  contentReducer,
 } from 'lbry-redux';
 import {
   userReducer,
@@ -23,7 +24,7 @@ import {
 } from 'lbryinc';
 import appReducer from 'redux/reducers/app';
 import availabilityReducer from 'redux/reducers/availability';
-import contentReducer from 'redux/reducers/content';
+import appContentReducer from 'redux/reducers/content';
 import settingsReducer from 'redux/reducers/settings';
 import subscriptionsReducer from 'redux/reducers/subscriptions';
 
@@ -36,6 +37,7 @@ export default history =>
     filtered: filteredReducer,
     claims: claimsReducer,
     comments: commentReducer,
+    appContent: appContentReducer,
     content: contentReducer,
     costInfo: costInfoReducer,
     fileInfo: fileInfoReducer,

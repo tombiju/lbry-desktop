@@ -123,14 +123,14 @@ export function doUpdateLoadStatus(uri: string, outpoint: string) {
   // @endif
 }
 
-export function doSetPlayingUri(uri: ?string) {
-  return (dispatch: Dispatch) => {
-    dispatch({
-      type: ACTIONS.SET_PLAYING_URI,
-      data: { uri },
-    });
-  };
-}
+// export function doSetPlayingUri(uri: ?string) {
+//   return (dispatch: Dispatch) => {
+//     dispatch({
+//       type: ACTIONS.SET_PLAYING_URI,
+//       data: { uri },
+//     });
+//   };
+// }
 
 export function doFetchClaimsByChannel(uri: string, page: number = 1, pageSize: number = PAGE_SIZE) {
   return (dispatch: Dispatch) => {
@@ -191,11 +191,13 @@ export function doPlayUri(uri: string, skipCostCheck: boolean = false, saveFileO
   return (dispatch: Dispatch, getState: () => any) => {
     const state = getState();
     const fileInfo = makeSelectFileInfoForUri(uri)(state);
+    console.log('FILEINFO', fileInfo);
     const uriIsStreamable = makeSelectUriIsStreamable(uri)(state);
     const downloadingByOutpoint = selectDownloadingByOutpoint(state);
     const alreadyDownloaded = fileInfo && (fileInfo.completed || (fileInfo.blobs_remaining === 0 && uriIsStreamable));
     const alreadyDownloading = fileInfo && !!downloadingByOutpoint[fileInfo.outpoint];
     if (alreadyDownloading || alreadyDownloaded) {
+      console.log('alreadyDownloading');
       return;
     }
 
@@ -220,6 +222,7 @@ export function doPlayUri(uri: string, skipCostCheck: boolean = false, saveFileO
     }
 
     if (fileInfo && saveFile && (!fileInfo.download_path || !fileInfo.written_bytes)) {
+      console.log('beginGetFile');
       beginGetFile();
       return;
     }
@@ -240,49 +243,49 @@ export function doPlayUri(uri: string, skipCostCheck: boolean = false, saveFileO
   };
 }
 
-export function savePosition(uri: string, position: number) {
-  return (dispatch: Dispatch, getState: () => any) => {
-    const state = getState();
-    const claim = makeSelectClaimForUri(uri)(state);
-    const { claim_id: claimId, txid, nout } = claim;
-    const outpoint = `${txid}:${nout}`;
-
-    dispatch({
-      type: ACTIONS.SET_CONTENT_POSITION,
-      data: { claimId, outpoint, position },
-    });
-  };
-}
-
-export function doSetContentHistoryItem(uri: string) {
-  return (dispatch: Dispatch) => {
-    dispatch({
-      type: ACTIONS.SET_CONTENT_LAST_VIEWED,
-      data: { uri, lastViewed: Date.now() },
-    });
-  };
-}
-
-export function doClearContentHistoryUri(uri: string) {
-  return (dispatch: Dispatch) => {
-    dispatch({
-      type: ACTIONS.CLEAR_CONTENT_HISTORY_URI,
-      data: { uri },
-    });
-  };
-}
-
-export function doClearContentHistoryAll() {
-  return (dispatch: Dispatch) => {
-    dispatch({ type: ACTIONS.CLEAR_CONTENT_HISTORY_ALL });
-  };
-}
-
-export function doSetHistoryPage(page: string) {
-  return (dispatch: Dispatch) => {
-    dispatch({
-      type: ACTIONS.SET_CONTENT_HISTORY_PAGE,
-      data: { page },
-    });
-  };
-}
+// export function savePosition(uri: string, position: number) {
+//   return (dispatch: Dispatch, getState: () => any) => {
+//     const state = getState();
+//     const claim = makeSelectClaimForUri(uri)(state);
+//     const { claim_id: claimId, txid, nout } = claim;
+//     const outpoint = `${txid}:${nout}`;
+//
+//     dispatch({
+//       type: ACTIONS.SET_CONTENT_POSITION,
+//       data: { claimId, outpoint, position },
+//     });
+//   };
+// }
+//
+// export function doSetContentHistoryItem(uri: string) {
+//   return (dispatch: Dispatch) => {
+//     dispatch({
+//       type: ACTIONS.SET_CONTENT_LAST_VIEWED,
+//       data: { uri, lastViewed: Date.now() },
+//     });
+//   };
+// }
+//
+// export function doClearContentHistoryUri(uri: string) {
+//   return (dispatch: Dispatch) => {
+//     dispatch({
+//       type: ACTIONS.CLEAR_CONTENT_HISTORY_URI,
+//       data: { uri },
+//     });
+//   };
+// }
+//
+// export function doClearContentHistoryAll() {
+//   return (dispatch: Dispatch) => {
+//     dispatch({ type: ACTIONS.CLEAR_CONTENT_HISTORY_ALL });
+//   };
+// }
+//
+// export function doSetHistoryPage(page: string) {
+//   return (dispatch: Dispatch) => {
+//     dispatch({
+//       type: ACTIONS.SET_CONTENT_HISTORY_PAGE,
+//       data: { page },
+//     });
+//   };
+// }

@@ -11,12 +11,13 @@ import {
   makeSelectClaimIsNsfw,
   selectBlockedChannels,
   selectChannelIsBlocked,
+  makeSelectHasVisitedUri,
   doClearPublish,
   doPrepareEdit,
 } from 'lbry-redux';
 import { selectBlackListedOutpoints, selectFilteredOutpoints } from 'lbryinc';
 import { selectShowMatureContent } from 'redux/selectors/settings';
-import { makeSelectHasVisitedUri } from 'redux/selectors/content';
+// import {  } from 'redux/selectors/content';
 import { makeSelectIsSubscribed } from 'redux/selectors/subscriptions';
 import { push } from 'connected-react-router';
 
