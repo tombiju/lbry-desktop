@@ -17,6 +17,7 @@ import {
   makeSelectClaimIsMine,
   doPopulateSharedUserState,
   doFetchChannelListMine,
+  HEADERS,
   selectBalance,
   doClearPublish,
 } from 'lbry-redux';
@@ -442,7 +443,8 @@ export function doSignIn() {
     // The balance is subscribed to on launch for desktop
     // @if TARGET='web'
     const { auth_token: authToken } = cookie.parse(document.cookie);
-    Lbry.setApiHeader('X-Lbry-Auth-Token', authToken);
+    Lbry.setApiHeader(HEADERS.AUTH_TOKEN, authToken);
+
     dispatch(doBalanceSubscribe());
     dispatch(doFetchChannelListMine());
     dispatch(doCheckSubscriptionsInit());
