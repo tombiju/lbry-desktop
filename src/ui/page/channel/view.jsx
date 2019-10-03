@@ -198,7 +198,7 @@ function ChannelPage(props: Props) {
           <TabList className="tabs__list--channel-page">
             <Tab disabled={editing}>{__('Content')}</Tab>
             <Tab>{editing ? __('Editing Your Channel') : __('About')}</Tab>
-            <Form onSubmit={handleSearch} className="wunderbar--channel">
+            <Form onSubmit={handleSearch} className="wunderbar--inline">
               <Icon icon={ICONS.SEARCH} />
               <FormField
                 className="wunderbar__input"
