@@ -791,5 +791,6 @@
   "channel": "channel",
   "Create": "Create",
   "You have no rewards available.": "You have no rewards available.",
-  "URL does not include name.": "URL does not include name."
+  "URL does not include name.": "URL does not include name.",
+  "No modifier provided after separator %modSeperator%.": "No modifier provided after separator %modSeperator%."
 }
