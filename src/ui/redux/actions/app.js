@@ -19,6 +19,7 @@ import {
   doFetchChannelListMine,
   selectBalance,
   doClearPublish,
+  doPreferenceGet,
 } from 'lbry-redux';
 import Native from 'native';
 import { doFetchDaemonSettings } from 'redux/actions/settings';
@@ -467,8 +468,9 @@ export function doSignIn() {
     }
     // @endif
 
-    Lbryio.call('user_settings', 'get').then(settings => {
-      dispatch(doPopulateSharedUserState(settings));
+    doPreferenceGet('shared', null, null, preference => {
+      debugger;
+      dispatch(doPopulateSharedUserState(preference));
     });
   };
 }
