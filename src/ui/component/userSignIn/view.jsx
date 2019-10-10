@@ -128,6 +128,9 @@ function UserSignIn(props: Props) {
     ),
   ];
 
+  if (showLoadingSpinner) {
+  }
+
   function getSignInStep() {
     for (var i = SIGN_IN_FLOW.length - 1; i > -1; i--) {
       const Component = SIGN_IN_FLOW[i];

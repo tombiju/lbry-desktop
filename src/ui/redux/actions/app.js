@@ -449,29 +449,38 @@ export function doSignIn() {
     dispatch(doCheckSubscriptionsInit());
     // @endif
 
-    // @if TARGET='app'
     const state = getState();
     const syncEnabled = makeSelectClientSetting(SETTINGS.ENABLE_SYNC)(state);
     const hasSyncedBefore = selectSyncHash(state);
     const balance = selectBalance(state);
 
     // For existing users, check if they've synced before, or have 0 balance
-    if (syncEnabled && (hasSyncedBefore || balance === 0)) {
+
+    const canSync = syncEnabled && (hasSyncedBefore || IS_WEB || balance === 0);
+    console.log('?');
+    if (canSync) {
       getSavedPassword().then(password => {
         const passwordArgument = password === null ? '' : password;
-        dispatch(doGetSync(passwordArgument, !hasSyncedBefore));
+
+        // Dont' set the default account for web
+        dispatch(doGetSync(passwordArgument, IS_WEB || !hasSyncedBefore));
 
         setInterval(() => {
-          dispatch(doGetSync(passwordArgument));
-        }, 1000 * 60 * 5);
+          dispatch(
+            doGetSync(passwordArgument, false, () => {
+              debugger;
+              doPreferenceGet('shared', null, null, savedPreferences => {
+                if (savedPreferences !== null) {
+                  dispatch(doPopulateSharedUserState(savedPreferences));
+                }
+              });
+            })
+          );
+
+          // }, 1000 * 60 * 5);
+        }, 10000);
       });
     }
-    // @endif
-
-    doPreferenceGet('shared', null, null, preference => {
-      debugger;
-      dispatch(doPopulateSharedUserState(preference));
-    });
   };
 }
 

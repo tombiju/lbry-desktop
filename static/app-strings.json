@@ -793,5 +793,8 @@
   "You have no rewards available.": "You have no rewards available.",
   "URL does not include name.": "URL does not include name.",
   "No modifier provided after separator %modSeperator%.": "No modifier provided after separator %modSeperator%.",
-  "This feature is not yet available for wallets with balances, but the gerbils are working on it.": "This feature is not yet available for wallets with balances, but the gerbils are working on it."
+  "This feature is not yet available for wallets with balances, but the gerbils are working on it.": "This feature is not yet available for wallets with balances, but the gerbils are working on it.",
+  "This app will automatically download new free content from channels you are subscribed to. You may configure this in Settings or on the Subscriptions page.": "This app will automatically download new free content from channels you are subscribed to. You may configure this in Settings or on the Subscriptions page.",
+  "(Only available on the desktop app.)": "(Only available on the desktop app.)",
+  "If we have your email address, we will send you notifications related to new content. You may configure these emails from the Help page.": "If we have your email address, we will send you notifications related to new content. You may configure these emails from the Help page."
 }

@@ -9,7 +9,7 @@ import { createHashHistory, createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import createRootReducer from './reducers';
 import { Lbryio } from 'lbryinc';
-import isEqual from 'util/deep-equal';
+import { sharedStateSubscriber } from 'lbry-redux';
 
 function isFunction(object) {
   return typeof object === 'function';
@@ -109,26 +109,29 @@ const store = createStore(
   composeEnhancers(applyMiddleware(...middleware))
 );
 
+/**
+ * source: the reducer name
+ * property: the property in the reducer-specific state
+ * transform: optional method to modify the value to be stored
+ */
 let currentPayload;
-store.subscribe(() => {
-  const state = store.getState();
-  const subscriptions = state.subscriptions.subscriptions.map(({ uri }) => uri);
-  const tags = state.tags.followedTags;
-  const authToken = state.user.accessToken;
-
-  const newPayload = {
-    version: '0.1',
-    shared: {
-      subscriptions,
-      tags,
+const sharedStateFilters = {
+  tags: { source: 'tags', property: 'followedTags' },
+  subscriptions: {
+    source: 'subscriptions',
+    property: 'subscriptions',
+    transform: function(value) {
+      return value.map(({ uri }) => uri);
     },
-  };
+  },
+};
 
-  if (!isEqual(newPayload, currentPayload)) {
-    currentPayload = newPayload;
-    if (authToken) {
-      Lbryio.call('user_settings', 'set', { settings: newPayload });
-    }
+store.subscribe(() => {
+  try {
+    const state = store.getState();
+    sharedStateSubscriber(state, sharedStateFilters, '0.1');
+  } catch (e) {
+    // handle gracefully?
   }
 });
 
