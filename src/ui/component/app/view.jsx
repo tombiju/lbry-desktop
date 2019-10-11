@@ -34,6 +34,7 @@ type Props = {
   onSignedIn: () => void,
   isUpgradeAvailable: boolean,
   autoUpdateDownloaded: boolean,
+  uploadCount: number,
   balance: ?number,
 };
 
@@ -50,6 +51,7 @@ function App(props: Props) {
     autoUpdateDownloaded,
     isUpgradeAvailable,
     requestDownloadUpgrade,
+    uploadCount,
     balance,
   } = props;
   const appRef = useRef();
@@ -68,6 +70,16 @@ function App(props: Props) {
     const newpath = buildURI(parseURI(pathname.slice(1).replace(/:/g, '#')));
     uri = newpath + hash;
   } catch (e) {}
+
+  useEffect(() => {
+    if (!uploadCount) return;
+    const handleBeforeUnload = event => {
+      event.preventDefault();
+      event.returnValue = 'magic';
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [uploadCount]);
 
   useEffect(() => {
     ReactModal.setAppElement(appRef.current);

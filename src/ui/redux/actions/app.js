@@ -7,6 +7,8 @@ import path from 'path';
 import * as ACTIONS from 'constants/action_types';
 import * as MODALS from 'constants/modal_types';
 import * as PAGES from 'constants/pages';
+import { X_LBRY_AUTH_TOKEN } from 'constants/token';
+
 import * as SETTINGS from 'constants/settings';
 import {
   Lbry,
@@ -17,7 +19,6 @@ import {
   makeSelectClaimIsMine,
   doPopulateSharedUserState,
   doFetchChannelListMine,
-  HEADERS,
   selectBalance,
   doClearPublish,
 } from 'lbry-redux';
@@ -443,7 +444,7 @@ export function doSignIn() {
     // The balance is subscribed to on launch for desktop
     // @if TARGET='web'
     const { auth_token: authToken } = cookie.parse(document.cookie);
-    Lbry.setApiHeader(HEADERS.AUTH_TOKEN, authToken);
+    Lbry.setApiHeader(X_LBRY_AUTH_TOKEN, authToken);
 
     dispatch(doBalanceSubscribe());
     dispatch(doFetchChannelListMine());
