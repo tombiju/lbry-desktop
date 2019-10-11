@@ -468,7 +468,6 @@ export function doSignIn() {
         setInterval(() => {
           dispatch(
             doGetSync(passwordArgument, false, () => {
-              debugger;
               doPreferenceGet('shared', null, null, savedPreferences => {
                 if (savedPreferences !== null) {
                   dispatch(doPopulateSharedUserState(savedPreferences));
