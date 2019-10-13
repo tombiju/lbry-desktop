@@ -9,11 +9,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Escape the generated link for tags ([#2984](https://github.com/lbryio/lbry-desktop/pull/2984))
+- Toggle fullscreen when pressing `f` ([#2159](https://github.com/lbryio/lbry-desktop/issues/2159))
+- Can't exit full-screen from embedded content with key `F11` ([#2514](https://github.com/lbryio/lbry-desktop/issues/2514))
 
 ### Added
 
 - Ability to add multiple tags at once with commas ([#2833](https://github.com/lbryio/lbry-desktop/pull/2833))
-
+- Add keyboard shortcuts to toggle player fullscreen: ([#3015](https://github.com/lbryio/lbry-desktop/pull/3015))
+  - `f` or `f11` to toggle player fullscreen mode
+  
 ### Changed
 
 - Refactor ModalAutoUpdateConfirm into ModalAutoUpdateDownloaded ([#2959](https://github.com/lbryio/lbry-desktop/pull/2959))
