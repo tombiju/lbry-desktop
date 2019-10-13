@@ -803,4 +803,13 @@
   "This is optional. You can continue to use this app without rewards, but LBC may be needed for some tasks.": "This is optional. You can continue to use this app without rewards, but LBC may be needed for some tasks.",
   "Unlock Rewards": "Unlock Rewards",
   "No transactions.": "No transactions."
+  "Enter a LBRY URL or search for videos, music, games and more": "Enter a LBRY URL or search for videos, music, games and more",
+  "I Understand": "I Understand",
+  "Enter \"%acknowledgement_text\"": "Enter \"%acknowledgement_text\"",
+  "Dear computer, %acknowledgement_text%": "Dear computer, %acknowledgement_text%",
+  "Enter \"%acknowledgement_text%\"": "Enter \"%acknowledgement_text%\"",
+  "Type \"%acknowledgement_text%\"": "Type \"%acknowledgement_text%\"",
+  "You must enter \"%acknowledgement_text%\"": "You must enter \"%acknowledgement_text%\"",
+  "Decrypt Wallet": "Decrypt Wallet",
+  "Your wallet has been encrypted with a local password, performing this action will remove this password.": "Your wallet has been encrypted with a local password, performing this action will remove this password."
 }
