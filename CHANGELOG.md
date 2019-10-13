@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
 - Escape the generated link for tags ([#2984](https://github.com/lbryio/lbry-desktop/pull/2984))
+- Markdown rendering issues with lbry urls and channel mentions ([#2928](https://github.com/lbryio/lbry-desktop/issues/#2928))
+- Incorrect styles of tooltip on dark theme ([#3031](https://github.com/lbryio/lbry-desktop/issues/#3031))
+- Code tag not formatting content on markdown preview ([#3027](https://github.com/lbryio/lbry-desktop/issues/#3027))
 
 ### Added
 - Keyboard shortcuts for the following actions: ([#2999](https://github.com/lbryio/lbry-desktop/pull/2999))
@@ -19,6 +22,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 - Ability to add multiple tags at once with commas ([#2833](https://github.com/lbryio/lbry-desktop/pull/2833))
 - Disable GIF animation unless user hovers ([#2986](https://github.com/lbryio/lbry-desktop/pull/2986))
+
+- Markdown preview for comments: ([#2986](https://github.com/lbryio/lbry-desktop/pull/2986))
+  - Basic text formating (bold, italic, strike)
+  - Lbry urls preview and channel mentions
+  - Implement URL embedding in comments
+  - Code blocks, inline code and blockquotes
+  - Embed Images and gifs
 
 ### Changed
 
